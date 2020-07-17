@@ -1,63 +1,43 @@
-#!/usr/local/bin/python
-
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-import json
-import pdb
-import os
+import os,sys
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+from selenium import webdriver
 
-class ZerodhaSelenium( object ):
+#Download ChromeDriver from https://chromedriver.chromium.org/downloads and Put on Same Folder
+chromedriver = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'chromedriver.exe')
+os.environ["webdriver.chrome.driver"] = chromedriver
 
-   def __init__( self ):
-      self.timeout = 5
-      self.loadCredentials()
-      self.driver = webdriver.Chrome()
+username=""
+password=""
+pin=""
 
-   def getCssElement( self, cssSelector ):
-      '''
-      To make sure we wait till the element appears
-      '''
-      return WebDriverWait( self.driver, self.timeout ).until( EC.presence_of_element_located( ( By.CSS_SELECTOR, cssSelector ) ) )
+driver = webdriver.Chrome(chromedriver)
+driver.get("https://kite.zerodha.com")
+driver.maximize_window()
+time.sleep(5)
 
-   def loadCredentials( self ):
-      self.username = "your_username"
-      self.password = "your_pass"
-      self.security = "your_pin"
+username_input = '//*[@id="userid"]'
+driver.find_element_by_xpath(username_input).send_keys(username)
 
-   def doLogin( self ):
-      #let's login
-      self.driver.get( "https://kite.zerodha.com/")
-      try:
-         passwordField = self.getCssElement( "input[placeholder=Password]" )
-         print(passwordField)
-         passwordField.send_keys( self.password )
-         userNameField = self.getCssElement( "input[placeholder='User ID']" )
-         print(userNameField)
-         userNameField.send_keys( self.username )
-         loginButton = self.getCssElement( "button[type=submit]" )
-         loginButton.click()
+password_input = '//*[@id="password"]'
+driver.find_element_by_xpath(password_input).send_keys(password)
 
-         # 2FA
-         form2FA = self.getCssElement( "form.twofa-form" )
-         print(form2FA)
-         fieldAnswer1 = form2FA.find_element_by_css_selector( "div:nth-child(2) > div > input[type=password]" )
-         print(fieldAnswer1)
-         buttonSubmit = self.getCssElement( "button[type=submit]" )
+submit_input = '//*[@id="container"]/div/div/div/form/div[4]/button'
+driver.find_element_by_xpath(submit_input).click()
+time.sleep(5)
 
-         fieldAnswer1.send_keys( self.security)
-         buttonSubmit.click()
+#Pin Part
+driver.find_element_by_xpath('//*[@id="pin"]').send_keys(pin)
+driver.find_element_by_xpath('//*[@id="container"]/div/div/div/form/div[3]/button').click()
+time.sleep(3)
 
-      except TimeoutException:
-         print( "Timeout occurred" )
+#Click on Postions Page
+driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div[1]/a[4]').click()
+time.sleep(5)
 
-      pdb.set_trace()
-      # close chrome
-      self.driver.quit()
+#Take Screenshot of the Positions Page
+element = driver.find_element_by_xpath('//*[@id="app"]/div[2]/div[2]')
+element_png = element.screenshot_as_png
+element_png_url =os.path.join(os.path.dirname(os.path.realpath(__file__)), username+'_ss.png')
+with open(element_png_url, "wb") as file:
+  file.write(element_png)
 
-if __name__ == "__main__":
-   obj = ZerodhaSelenium()
-   obj.doLogin()
