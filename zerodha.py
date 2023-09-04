@@ -1,43 +1,62 @@
-import os,sys
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from selenium import webdriver
+from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
-#Download ChromeDriver from https://chromedriver.chromium.org/downloads and Put on Same Folder
-chromedriver = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'chromedriver.exe')
-os.environ["webdriver.chrome.driver"] = chromedriver
+# Configure Chrome options
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--force-dark-mode')
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument("--window-size=1280,720")
 
-username=""
-password=""
-pin=""
+driver = webdriver.Chrome(options=chrome_options)
+driver.get("https://kite.zerodha.com/positions")
 
-driver = webdriver.Chrome(chromedriver)
-driver.get("https://kite.zerodha.com")
-driver.maximize_window()
+zerodha_username = "your_username"
+zerodha_password = "your_oassword"
+zerodha_totp="IZEKKYSVDHCQ2DQ445XIQYIS3SA444L6"
+
+
+element1 = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/div/div/div/form/div[2]/input")
+element1.clear()
+element1.send_keys(zerodha_username)
+time.sleep(2)
+
+element2 = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/div/div/div/form/div[3]/input")
+element2.clear()
+element2.send_keys(zerodha_password)
+time.sleep(2)
+
+element3 = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/div/div/div/form/div[4]/button")
+element3.click()
 time.sleep(5)
 
-username_input = '//*[@id="userid"]'
-driver.find_element_by_xpath(username_input).send_keys(username)
+zerodha_totp = pyotp.parse_uri('otpauth://totp/Zerodha:'+str(zerodha_username)+'?algorithm=SHA1&digits=6&issuer=Zerodha&period=30&secret='+zerodha_totp+'')
+zerodha_totp = zerodha_totp.now().zfill(6)
 
-password_input = '//*[@id="password"]'
-driver.find_element_by_xpath(password_input).send_keys(password)
+element4 = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/div[2]/div/div/form/div[1]/input")
+element4.clear()
+element4.send_keys(zerodha_totp)
+time.sleep(2)
 
-submit_input = '//*[@id="container"]/div/div/div/form/div[4]/button'
-driver.find_element_by_xpath(submit_input).click()
+# element5 = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/div[2]/div/div/form/div[2]/button")
+# element5.click()
+# time.sleep(5)
+
+element6 = driver.find_element(By.XPATH, "/html/body/div[1]/div[6]/div/div/div[3]/div/div/div/button")
+element6.click()
 time.sleep(5)
 
-#Pin Part
-driver.find_element_by_xpath('//*[@id="pin"]').send_keys(pin)
-driver.find_element_by_xpath('//*[@id="container"]/div/div/div/form/div[3]/button').click()
-time.sleep(3)
 
-#Click on Postions Page
-driver.find_element_by_xpath('//*[@id="app"]/div[1]/div/div[2]/div[1]/a[4]').click()
-time.sleep(5)
+# Format the datetime as a string (e.g., "YYYY-MM-DD_HH-MM-SS")
+formatted_datetime = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-#Take Screenshot of the Positions Page
-element = driver.find_element_by_xpath('//*[@id="app"]/div[2]/div[2]')
-element_png = element.screenshot_as_png
-element_png_url =os.path.join(os.path.dirname(os.path.realpath(__file__)), username+'_ss.png')
-with open(element_png_url, "wb") as file:
-  file.write(element_png)
+file_path='kite_'+str(zerodha_username)+'_screenshot_'+str(formatted_datetime)+'.png'
+driver.save_screenshot(file_path)
 
+driver.quit()
+
+print(file_path)
