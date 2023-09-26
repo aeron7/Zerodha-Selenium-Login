@@ -1,4 +1,4 @@
-# Zerodha Selenium Login
+# Zerodha Selenium Tools
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/aeron7/Zerodha-Selenium-Login)
 ![GitHub watchers](https://img.shields.io/github/watchers/aeron7/Zerodha-Selenium-Login)
@@ -54,7 +54,7 @@ Run the script to automate the Zerodha login process. The script will perform th
 python zerodha_screenshot.py
 ```
 
-## Automating Zerodha Login with Python and Selenium
+## Zerodha Auto Login
 
 Automating the login process for your Zerodha account can be efficiently accomplished using Python and Selenium. Below is a step-by-step guide to automate your Zerodha login:
 
