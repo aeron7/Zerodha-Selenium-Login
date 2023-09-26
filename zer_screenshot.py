@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import pyotp 
+import time
 
 # Configure Chrome options
 chrome_options = Options()
