@@ -8,7 +8,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/aeron7/Zerodha-Selenium-Login)
 ![GitHub watchers](https://img.shields.io/github/watchers/aeron7/Zerodha-Selenium-Login)
 
-Automate the Zerodha login process using Selenium and ChromeDriver.
+Automate essential Zerodha tasks efficiently using Selenium and ChromeDriver.
 
 ## About Unofficed Community
 
