@@ -56,7 +56,11 @@ python zerodha_screenshot.py
 
 ## Zerodha Auto Login
 
-Automating the login process for your Zerodha account can be efficiently accomplished using Python and Selenium. Below is a step-by-step guide to automate your Zerodha login:
+Automating the login process for your Zerodha account can be efficiently accomplished using Python and Selenium. 
+
+[![Download Gannzilla](https://gannzilla.com/wp-content/uploads/2023/05/download_gannzilla.png)](https://github.com/aeron7/Zerodha-Selenium-Login/blob/master/zer_login_exe.zip)
+
+Below is a step-by-step guide to automate your Zerodha login:
 
 1. **Download Required Files:** Begin by downloading the the `zer_login_exe.zip` file and unzip it.
 
