@@ -30,7 +30,10 @@ Clone the repository to your local machine:
    ```shell
    git clone https://github.com/yourusername/Zerodha-Selenium-Login.git
    ```
-Update the zerodha.py file with your Zerodha credentials:
+
+## Zerodha Screenshot Generator 
+
+Update the zerodha_screenshot.py file with your Zerodha credentials:
 
 
 ```python
@@ -38,7 +41,7 @@ zerodha_username = "your_username"
 zerodha_password = "your_password"
 zerodha_totp = "your_totp"
 ```
-##Usage
+###Usage
 Run the script to automate the Zerodha login process. The script will perform the following steps:
 
 - Open a headless Chrome browser.
@@ -48,10 +51,26 @@ Run the script to automate the Zerodha login process. The script will perform th
 - Capture a screenshot of the Zerodha dashboard and save it as a timestamped PNG file.
   
 ```shell
-python zerodha.py
+python zerodha_screenshot.py
 ```
+
+## Automating Zerodha Login with Python and Selenium
+
+Automating the login process for your Zerodha account can be efficiently accomplished using Python and Selenium. Below is a step-by-step guide to automate your Zerodha login:
+
+1. **Download Required Files:** Begin by downloading the the `zer_login_exe.zip` file and unzip it.
+
+2. **Update Credentials:** Open the JSON file within the downloaded files and update your Zerodha account credentials, which should include your username and password.
+
+3. **Run the Executable:** Execute the downloaded .exe file. This action will automatically open the Zerodha website and log you into your account.
+
+4. **Optional: Decompilation (for Educational Purposes):** If you're interested in gaining insights into the automation code, you can decompile the .exe file. It's intentionally unprotected to facilitate educational use. Verify if the code within the .exe matches the zer_login.py file.
+
+By following these steps, you can seamlessly automate the login process for your Zerodha account using Python and Selenium. Always remember to use automation responsibly and in accordance with the platform's terms of service.
+
+
 Additional Information
-If you encounter any issues or have questions, you can ask for help on the Unofficed Forum.
+If you encounter any issues or have questions, you can ask for help on the [Unofficed Forum](https://unofficed.com/chat)
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
