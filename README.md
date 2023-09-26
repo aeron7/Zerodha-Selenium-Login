@@ -68,9 +68,5 @@ Automating the login process for your Zerodha account can be efficiently accompl
 
 By following these steps, you can seamlessly automate the login process for your Zerodha account using Python and Selenium. Always remember to use automation responsibly and in accordance with the platform's terms of service.
 
-
-Additional Information
-If you encounter any issues or have questions, you can ask for help on the [Unofficed Forum](https://unofficed.com/chat)
-
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
