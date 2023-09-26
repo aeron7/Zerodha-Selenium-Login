@@ -64,7 +64,7 @@ Automating the login process for your Zerodha account can be efficiently accompl
 
 3. **Run the Executable:** Execute the downloaded .exe file. This action will automatically open the Zerodha website and log you into your account.
 
-4. **Optional: Decompilation (for Educational Purposes):** If you're interested in gaining insights into the automation code, you can decompile the .exe file. It's intentionally unprotected to facilitate educational use. Verify if the code within the .exe matches the zer_login.py file.
+4. **Optional: Decompilation (for Educational Purposes):** If you're interested in gaining insights into the automation code, you can decompile the .exe file. It's intentionally unprotected to facilitate educational use. Verify if the code within the .exe matches the `zer_login.py` file.
 
 By following these steps, you can seamlessly automate the login process for your Zerodha account using Python and Selenium. Always remember to use automation responsibly and in accordance with the platform's terms of service.
 
